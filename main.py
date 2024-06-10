@@ -1,26 +1,35 @@
 from flask import Flask, render_template
 from datetime import datetime
+import time
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/films/")
 def films():
-    return render_template("index.html")
+    return render_template("films.html")
 
 
 @app.route("/person/")
 def person():
-    return render_template("LessonVD04.html")
+    return render_template("person.html")
 
-@app.route("/home/")
+@app.route("/blog/")
+def blog():
+    return render_template("blog.html")
+
+@app.route("/contacts/")
+def contacts():
+    return render_template("contacts.html")
+
+@app.route("/")
 def home():
     now = datetime.now()
-    current_date = now.strftime("%Y-%m-%d")
-    current_time = now.strftime("%H:%M:%S")
+    current_date = now.strftime("%d-%m-%y")
+    current_time = now.strftime("%H:%M")
 
-    return render_template("home.html", current_date=current_date, current_time=current_time)
-
+    return render_template("index.html", current_date=current_date, current_time=current_time)
+    page.refresh(30)
 
 if __name__ == "__main__":
     app.run()
