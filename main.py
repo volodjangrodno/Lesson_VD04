@@ -4,44 +4,66 @@ import time
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    now = datetime.now()
+    current_date = now.strftime("%d-%m-%y")
+    current_time = now.strftime("%H:%M")
+    context = {
+        "title": "Главная",
+        "button": "Продолжить"
+    }
+    return render_template("index.html", current_date=current_date, current_time=current_time, **context)
+    page.refresh(30)
 
 @app.route("/films/")
 def films():
     context = {
-        "caption": "Фильмы про Гарри",
-        "link": "Википедия"
+        "title": "Фильмы",
+        "button": "Википедия"
     }
     return render_template("films.html", **context)
 
-@app.route("/films2/")
-def films2():
+@app.route("/about/")
+def about():
     context = {
-        "caption": "Гарри Поттер",
-        "link": "Сюжет"
+        "title": "О нас",
+        "button": "Далее"
     }
-    return render_template("films.html",**context)
+    return render_template("about.html",**context)
 
 
 @app.route("/person/")
 def person():
-    return render_template("person.html")
+    context = {
+        "title": "Герои фильмов",
+        "button": "Википедия"
+    }
+    return render_template("person.html", **context)
 
 @app.route("/blog/")
 def blog():
-    return render_template("blog.html")
+    context = {
+        "title": "Блог",
+        "button": "Читать статью"
+    }
+    return render_template("blog.html", **context)
 
 @app.route("/contacts/")
 def contacts():
-    return render_template("contacts.html")
+    context = {
+        "title": "Контакты",
+        "button": "Связаться с нами"
+    }
+    return render_template("contacts.html", **context)
 
-@app.route("/")
+@app.route("/home/")
 def home():
-    now = datetime.now()
-    current_date = now.strftime("%d-%m-%y")
-    current_time = now.strftime("%H:%M")
-
-    return render_template("index.html", current_date=current_date, current_time=current_time)
-    page.refresh(30)
+    context = {
+        "title": "Домашняя страница",
+        "button": "Смотреть фильм"
+    }
+    return render_template("home.html", **context)
 
 if __name__ == "__main__":
     app.run()
