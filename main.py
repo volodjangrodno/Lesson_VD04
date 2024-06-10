@@ -7,7 +7,19 @@ app = Flask(__name__)
 
 @app.route("/films/")
 def films():
-    return render_template("films.html")
+    context = {
+        "caption": "Фильмы про Гарри",
+        "link": "Википедия"
+    }
+    return render_template("films.html", **context)
+
+@app.route("/films2/")
+def films2():
+    context = {
+        "caption": "Гарри Поттер",
+        "link": "Сюжет"
+    }
+    return render_template("films.html",**context)
 
 
 @app.route("/person/")
